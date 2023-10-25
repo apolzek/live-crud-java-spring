@@ -18,13 +18,43 @@ This project was build during a [live in my Youtube Channel](https://www.youtube
 $ git clone https://github.com/Fernanda-Kipper/live-crud-java-spring.git
 ```
 
-2. Install dependencies with Maven
+2. Install Java and Maven
 
-## Usage
+```sh
+asdf plugin add java
+asdf install java graalvm-22.3.0+java19
+asdf global java graalvm-22.3.0+java19
+tail $HOME/.tool-versions
 
-1. Start the application with Maven
-2. The API will be accessible at http://localhost:8080
+asdf plugin-add maven 
+asdf install maven 3.5.0
+asdf global maven 3.5.0
+```
 
+3. Database
+`docker compose up -d`
+
+4. Install dependencies with Maven
+```
+mvn install
+mvn clean package
+```
+
+5. Start the application with Maven
+```
+java -jar target/crud-0.0.1-SNAPSHOT.war
+```
+
+6. The API will be accessible at http://localhost:8080
+
+```
+curl --location 'http://localhost:8080/product' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "car",
+    "price_in_cents": 20000000
+}'
+```
 
 ## API Endpoints
 The API provides the following endpoints:
